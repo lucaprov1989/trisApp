@@ -1,7 +1,5 @@
-angular.module("app.proxy", []).factory("RestClient", ["$http", "config", "$filter", "$rootScope",
-    function($http, config, $filter, $rootScope) {
-
-        $rootScope.NET_STATUS_ON = false;
+angular.module("app.proxy", []).factory("RestClient", ["$http", "config",
+    function($http, config) {
 
         function getResponse(response) {
             return {
@@ -12,31 +10,10 @@ angular.module("app.proxy", []).factory("RestClient", ["$http", "config", "$filt
         }
 
         function makeRequest(req, callBack) {
-            // Si mostra lo spinner
-            $rootScope.NET_STATUS_ON = true;
-
-
             $http(req).
             then(function(response) {
+                callBack(getResponse(response));
 
-                $rootScope.NET_STATUS_ON = false;
-                if (callBack !== undefined) {
-
-                    callBack(getResponse(response));
-
-                } else {
-                    console.log("PostRequestSuccess: " + req.url + "?" + $httpParamSerializer(rp));
-                    console.log(response);
-                }
-            }, function(response) {
-                $rootScope.NET_STATUS_ON = false;
-                if (callBack !== undefined) {
-                    callBack(getResponse(response));
-
-                } else {
-                    console.error("PostRequestError: " + req.url + "?" + $httpParamSerializer(rp));
-                    console.error(response);
-                }
             });
         }
 

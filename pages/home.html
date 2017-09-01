@@ -16,7 +16,7 @@
     </p>
     <button ng-click="ctrl.restartMatch();" class="restartButton">Nuovo Gioco</button>
     <button ng-click="ctrl.showOldMatches()" ng-hide="ctrl.show" class="restartButton">Mostra Partite Precedenti</button>
-    <button ng-click="ctrl.hideOldMatches()" ng-hide="!ctrl.show" class="restartButton">Nascondi Partite Precedenti</button>
+    <button ng-click="ctrl.hideOldMatches()" ng-show="ctrl.show" class="restartButton">Nascondi Partite Precedenti</button>
 </div>
 <br/>
 <div ng-if="ctrl.matches && ctrl.show">

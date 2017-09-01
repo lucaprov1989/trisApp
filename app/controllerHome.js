@@ -33,7 +33,7 @@ angular.module('AppControllers', [])
                 return cell.value !== empty_cell || game.winner;
             };
 
-            var checkForMatch = function(cell1, cell2, cell3) {
+            var checkForTris = function(cell1, cell2, cell3) {
                 return cell1.value === cell2.value &&
                     cell1.value === cell3.value &&
                     cell1.value !== empty_cell;
@@ -56,17 +56,17 @@ angular.module('AppControllers', [])
             var checkForEndOfGame = function() {
 
                 for (var x = 0; x < game.blackboard.length; x++) {
-                    if (checkForMatch(game.blackboard[x][0], game.blackboard[x][1], game.blackboard[x][2])) {
+                    if (checkForTris(game.blackboard[x][0], game.blackboard[x][1], game.blackboard[x][2])) {
                         var rowMatch = true;
                     }
-                    if (checkForMatch(game.blackboard[0][x], game.blackboard[1][x], game.blackboard[2][x])) {
+                    if (checkForTris(game.blackboard[0][x], game.blackboard[1][x], game.blackboard[2][x])) {
                         var columnMatch = true;
                     }
                 }
 
-                var diagMatch1 = checkForMatch(game.blackboard[0][0], game.blackboard[1][1], game.blackboard[2][2]);
+                var diagMatch1 = checkForTris(game.blackboard[0][0], game.blackboard[1][1], game.blackboard[2][2]);
 
-                var diagMatch2 = checkForMatch(game.blackboard[0][2], game.blackboard[1][1], game.blackboard[2][0]);
+                var diagMatch2 = checkForTris(game.blackboard[0][2], game.blackboard[1][1], game.blackboard[2][0]);
 
 
                 var winner = rowMatch || columnMatch || diagMatch2 || diagMatch1;
