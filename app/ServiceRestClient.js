@@ -4,17 +4,14 @@ angular.module("app.proxy", []).factory("RestClient", ["$http", "config", "$filt
         $rootScope.NET_STATUS_ON = false;
 
         function getResponse(response) {
-            var i = 1;
             return {
                 error: response.status == 200 ? 0 : response.status,
                 description: response.statusText,
-                data: response.data,
-                i: i++
+                data: response.data
             };
         }
 
         function makeRequest(req, callBack) {
-            var i = 1;
             // Si mostra lo spinner
             $rootScope.NET_STATUS_ON = true;
 

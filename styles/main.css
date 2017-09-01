@@ -15,8 +15,8 @@ h1 {
   margin: 20px;
   font-family: "Calibri";
 }
-p > span {
-  font-family: "Calibri";
+p, span {
+  font-family: 'calibri';
 }
 
 .bordertopnone{
@@ -45,7 +45,7 @@ p > span {
   color: red;
 }
 .restartButton {
-  background-color: grey;
+  background-color: white;
   border: 1px solid black;
   font-family: "Calibri";
 }

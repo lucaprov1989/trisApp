@@ -4,7 +4,6 @@ var model_tris = require('../model/tris');
 
 var controller = {
     _name: "tris",
-    // Ottiene i dati della domanda
     index: function(req, res) {
         switch (req.method) {
             case 'POST':

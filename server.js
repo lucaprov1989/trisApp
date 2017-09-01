@@ -20,9 +20,6 @@ router.route('/tris/:action?/:id?')
     .post(tris.execute)
     .put(tris.execute);
 
-
-
 app.use('/api', router);
-
 
 var server = app.listen(LISTEN_PORT);

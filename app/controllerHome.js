@@ -51,7 +51,7 @@ angular.module('AppControllers', [])
                     }
                 }
                 return cellVal.every(checkVal);
-            }
+            };
 
             var checkForEndOfGame = function() {
 
@@ -139,9 +139,7 @@ angular.module('AppControllers', [])
                 game.draw = false;
                 RestClient.get_matches(function(response) {
                     game.matches = response.data;
-
                     var results = countResultsOverall(game.matches);
-
                     game.over_all = results;
                 })
             };

@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-
 var Schema = new mongoose.Schema({
     match: [],
     winner_draw: {
@@ -10,9 +9,7 @@ var Schema = new mongoose.Schema({
         type: Date,
         required: true
     }
-
 }, {
     collection: 'tris'
 });
-
 module.exports = mongoose.model('tris', Schema);
