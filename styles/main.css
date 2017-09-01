@@ -1,0 +1,55 @@
+*{
+  text-align: center;
+  font-family: "Courier"
+}
+
+body {
+  padding: 20px 40px;
+}
+button{
+  border: none;
+  background-color: white;
+}
+
+h1 {
+  margin: 20px;
+  font-family: "Calibri";
+}
+p > span {
+  font-family: "Calibri";
+}
+
+.bordertopnone{
+  border-top: none;
+  border-bottom: 2px solid black;
+
+}
+.borderleftbutright{
+  border-left: none;
+  border-right: 2px solid black;
+}
+.borderbottombutop{
+  border-bottom: none;
+  border-top: 2px solid black;
+}
+.borderrightbutleft{
+  border-right: none;
+  border-left: 2px solid black;
+}
+
+.xcell {
+  color: green;
+}
+
+.ocell {
+  color: red;
+}
+.restartButton {
+  background-color: grey;
+  border: 1px solid black;
+  font-family: "Calibri";
+}
+.previousmatches{
+  float: left;
+  margin-left: 1em;
+}

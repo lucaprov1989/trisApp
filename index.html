@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="trisApp">
+
+<head>
+    <title>Tris!</title>
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="app/main.js"></script>
+    <script src="app/controllerHome.js"></script>
+    <script src="app/ServiceRestClient.js"></script>
+    <script src="app/Config.js"></script>
+
+</head>
+
+<body ng-controller="controllerHome as ctrl">
+    <div>
+        <h1>TRIS!</h1>
+        <div ng-repeat="row in ctrl.blackboard" ng-init="i = $index">
+            <button ng-repeat="cell in row" ng-disabled="ctrl.disableCell(cell);" ng-class="{bordertopnone: i == 0,
+                  borderleftbutright: $index == 0,
+                  borderbottombutop: i == 2,
+                  borderrightbutleft: $index == 2,
+                  xcell: cell.value == 'X',
+                  ocell: cell.value == 'O'}" ng-click="ctrl.move(cell);">{{ cell.value }}</button>
+        </div>
+        <br/>
+        <p>
+            <span ng-hide="ctrl.winner || ctrl.draw">E' il turno di : {{ ctrl.currentPlayer }}</span>
+            <span ng-show="ctrl.winner">{{ ctrl.winner }} ha vinto!</span>
+            <span ng-show="ctrl.draw">Parità!</span>
+        </p>
+        <button ng-click="ctrl.restartMatch();" class="restartButton">Nuovo Gioco</button>
+        <button ng-click="ctrl.showOldMatches()" ng-hide="ctrl.show" class="restartButton">Mostra Partite Precedenti</button>
+        <button ng-click="ctrl.hideOldMatches()" ng-hide="!ctrl.show" class="restartButton">Nascondi Partite Precedenti</button>
+    </div>
+    <br/>
+    <div ng-if="ctrl.matches && ctrl.show">
+        <h1>Partite Precedenti: {{ctrl.over_all.tot}}</h1>
+        <p> Risultati Totali: X : {{ctrl.over_all.x}} , O : {{ctrl.over_all.o}}, Pareggi : {{ctrl.over_all.draw}} </p>
+        <div class="previousmatches" ng-repeat="match in ctrl.matches">
+            <p> Partita del {{ match.data | date : "dd.MM.y"}} </p> <br>
+            <div ng-repeat="row in match.match" ng-init="i = $index">
+                <button ng-repeat="cell in row" ng-disabled="ctrl.disableCell(cell);" ng-class="{bordertopnone: i == 0,
+                    borderleftbutright: $index == 0,
+                    borderbottombutop: i == 2,
+                    borderrightbutleft: $index == 2,
+                    xcell: cell.value == 'X',
+                    ocell: cell.value == 'O'}" ng-click="ctrl.move(cell);">{{ cell.value }}</button>
+            </div>
+            <p> Vincitore: {{match.winner_draw}} </p>
+            <br/>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
