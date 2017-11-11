@@ -1,4 +1,7 @@
 var mongoose = require('mongoose');
+
+//Schema Models
+
 var Schema = new mongoose.Schema({
     match: [],
     winner_draw: {

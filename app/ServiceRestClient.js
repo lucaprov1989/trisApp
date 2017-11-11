@@ -1,3 +1,5 @@
+/*REST Service*/
+
 angular.module("app.proxy", []).factory("RestClient", ["$http", "config",
     function($http, config) {
 
@@ -52,7 +54,7 @@ angular.module("app.proxy", []).factory("RestClient", ["$http", "config",
             queryRequest("DELETE", path, callBack);
         }
 
-
+        //Add more actions here
         return {
             get_matches: function(callBack) {
                 getRequest("/tris/", callBack);

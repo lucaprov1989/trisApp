@@ -1,3 +1,6 @@
+
+/*Backend Actions*/
+
 var mongoose = require('../config/mongodb');
 var controller_common = require('./common');
 var model_tris = require('../model/tris');
@@ -6,6 +9,7 @@ var controller = {
     _name: "tris",
     index: function(req, res) {
         switch (req.method) {
+          //save match and results
             case 'POST':
                 var match = new model_tris({
                     match: req.body.match,
@@ -20,6 +24,7 @@ var controller = {
 
                 })
                 break;
+                //get results
             case 'GET':
                 model_tris.find().exec(function(err, matches) {
                     res.json(matches);

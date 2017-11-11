@@ -1,3 +1,5 @@
+/*Home Controller*/
+
 angular.module('AppControllers', [])
     .controller('controllerHome', ['RestClient', '$http', '$window',
         function(RestClient, $http, $window) {
@@ -28,7 +30,7 @@ angular.module('AppControllers', [])
                     value: empty_cell
                 }]
             ];
-
+            //Disable Cells if we have a winner or if not '-'
             game.disableCell = function(cell) {
                 return cell.value !== empty_cell || game.winner;
             };
@@ -38,7 +40,7 @@ angular.module('AppControllers', [])
                     cell1.value === cell3.value &&
                     cell1.value !== empty_cell;
             };
-
+            //if all the cells are clicked and there is no winner, draw
             var checkForDraw = function() {
                 var cellVal = [];
 
@@ -52,7 +54,7 @@ angular.module('AppControllers', [])
                 }
                 return cellVal.every(checkVal);
             };
-
+            //check row, columns and diags for tris if tris we have winner, if not we have draw
             var checkForEndOfGame = function() {
 
                 for (var x = 0; x < game.blackboard.length; x++) {
@@ -63,9 +65,9 @@ angular.module('AppControllers', [])
                         var columnMatch = true;
                     }
                 }
-
+                //Find another way to check Diags
                 var diagMatch1 = checkForTris(game.blackboard[0][0], game.blackboard[1][1], game.blackboard[2][2]);
-
+                //Find another way to check Diags
                 var diagMatch2 = checkForTris(game.blackboard[0][2], game.blackboard[1][1], game.blackboard[2][0]);
 
 
@@ -80,7 +82,7 @@ angular.module('AppControllers', [])
                         winner_draw: game.winner ? game.winner : game.draw,
                         match: game.blackboard
                     };
-
+                    //save match in DB
                     RestClient.save_match(match_stats, function(response) {
                         console.log(response.data)
                     })
@@ -120,14 +122,14 @@ angular.module('AppControllers', [])
             game.hideOldMatches = function() {
                 game.show = false;
             };
-
+            //show alternitavely X or O
             game.move = function(cell) {
                 cell.value = game.currentPlayer;
                 if (checkForEndOfGame() === false) {
                     game.currentPlayer = game.currentPlayer === 'X' ? 'O' : 'X';
                 }
             };
-
+            //reset game
             game.restartMatch = function() {
                 for (var x = 0; x < game.blackboard.length; x++) {
                     for (var i = 0; i < game.blackboard[x].length; i++) {

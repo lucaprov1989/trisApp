@@ -1,7 +1,9 @@
 <div>
     <h1>TRIS!</h1>
     <div ng-repeat="row in ctrl.blackboard" ng-init="i = $index">
-        <button ng-repeat="cell in row" ng-disabled="ctrl.disableCell(cell);" ng-class="{bordertopnone: i == 0,
+        <button ng-repeat="cell in row" ng-disabled="ctrl.disableCell(cell);"
+              
+              ng-class="{bordertopnone: i == 0,
               borderleftbutright: $index == 0,
               borderbottombutop: i == 2,
               borderrightbutleft: $index == 2,
